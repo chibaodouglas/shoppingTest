@@ -53,6 +53,7 @@ CREATE TABLE orders (
 
 -- order details describes the items an order contains. has item reference, amount, cost at time of sale
 CREATE TABLE orderdetails(
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
   orderid INTEGER, 
   itemid INTEGER,
   amount INTEGER DEFAULT 1,

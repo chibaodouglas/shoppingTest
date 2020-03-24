@@ -54,7 +54,7 @@ public class LoginController {
 	    {
 	    	if(user.isAdmin())
 	    	{ return "AdminMenu"; }
-	    	return "redirect:Menu";
+	    	return "redirect:index";
 	    }
 	   
 	    //get list of available users
@@ -86,7 +86,7 @@ public class LoginController {
 			model.addAttribute("message", "Login Successful");
 			if(user.isAdmin())
 			{return "redirect:AdminMenu";}
-			return "redirect:Menu";
+			return "redirect:";
 		}
 		return "login";
 	}

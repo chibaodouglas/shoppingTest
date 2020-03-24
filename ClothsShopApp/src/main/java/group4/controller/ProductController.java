@@ -19,14 +19,14 @@ import group4.model.*;
 
 @Controller
 @SessionAttributes("User")
-public class ProductListController {
-	
+public class ProductController {
+
 	@Autowired
 	UserDAO userDao;
-	
-	@Autowired 
+
+	@Autowired
 	ProductsDAO productsDao;
-	
+
 	@ModelAttribute("Product")
 	public Product selectedProduct() {
 		return new Product();
@@ -37,33 +37,31 @@ public class ProductListController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/showProducts")
+	@GetMapping("/product")
 	public String showProducts(HttpSession session, Model model) {
-	    Product product = (Product) session.getAttribute("product");
-	    if(product != null) {
-	    	List<Product> products = productsDao.getAllProducts();
-	    	model.addAttribute("products", products);
-	    	return "show-products";
-	    }
-	    return "login";
+		List<Product> products = productsDao.getAllProducts();
+		model.addAttribute("products", products);
+		return "show-products";
+
 	}
-	
+
 	@PostMapping("/selectedProduct")
 	public String selected(HttpSession session, @ModelAttribute("product") Product product, Model model) {
 		User user = (User) session.getAttribute("user");
 		int productId = product.getProductID();
-		
-		for(Product p : user.getSelectedProducts()) {
-			if(p.getProductID() == productId) {
+
+		for (Product p : user.getSelectedProducts()) {
+			if (p.getProductID() == productId) {
 				model.addAttribute("message", "Product already selected.");
 				return "redirect:showProducts";
 			}
 		}
-		
-		/*if(userDao.selectedProductByProductID(user.getEmail(),productId) > 0) {
-			user.setSelectedProducts(userDao.findSelectedProducts(user.getEmail()));
-		}*/
-		
+
+		/*
+		 * if(userDao.selectedProductByProductID(user.getEmail(),productId) > 0) {
+		 * user.setSelectedProducts(userDao.findSelectedProducts(user.getEmail())); }
+		 */
+
 		return "redirect:login";
 	}
 

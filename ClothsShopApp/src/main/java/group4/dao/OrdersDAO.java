@@ -15,5 +15,8 @@ public interface OrdersDAO {
 	void addCartItem(int orderID, int productID, int userId);
 
 	List<OrderDetail> getOrderDetail(int orderID, int userId);
+	
+	//#Bao
+	void createNewOrder(int id);
 
 }

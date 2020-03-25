@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="col-md-offset-2 col-md-7">
-		<h2 class="text-center">Student Login: ${message}</h2>
+		<h2 class="text-center">User Login: ${message}</h2>
 		<div class="panel panel-info">
 			<div class="panel-body">
 				<form:form action="login" cssClass="form-horizontal" method="post"
@@ -32,11 +32,20 @@
 					<!-- Display utility: all users -->
 					<p>Available user accounts:</p>
 					<table class="table table-striped table-bordered">
+							<tr>
+								<td>name</td>
+								<td>password</td>
+								<td>email</td>
+								<!--#bao Display if admin -->
+								<td>Admin ???</td>
+							</tr>
 						<c:forEach var="users" items="${allUsers}">
 							<tr>
 								<td>${users.userName}</td>
 								<td>${users.password}</td>
 								<td>${users.email}</td>
+								<!--#bao Display if admin -->
+								<td>(${users.admin})</td>
 							</tr>
 						</c:forEach>
 

@@ -110,7 +110,7 @@ public class OrdersDAOImpl implements OrdersDAO {
 		List<OrderDetail> results = namedParameterJdbcTemplate.query(sql, params, new OrderDetailsMapper());
 		System.out.println("getOrderDetail");
 		System.out.println(params);
-		System.out.println(results);
+		System.out.println("result is" + results);
 		if (results.size() == 0) {
 			return null;
 		}
@@ -183,5 +183,15 @@ public class OrdersDAOImpl implements OrdersDAO {
 
 		return results;
 	}
-
+	
+	//#Bao
+	public void createNewOrder(int userId) {
+		//get the userID 
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("userID", userId);
+		String sql = "INSERT INTO ORDERS (customerid,destination) "
+					+ "VALUES (:userID,(SELECT destination FROM orders WHERE customerid=:userID ORDER BY orders.id DESC LIMIT 1))";
+		
+		namedParameterJdbcTemplate.update(sql, params);
+	}
 }

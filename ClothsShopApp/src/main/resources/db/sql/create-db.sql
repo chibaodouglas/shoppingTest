@@ -12,7 +12,7 @@ CREATE TABLE users (
   email VARCHAR(50) NOT NULL,
   username VARCHAR(50) NOT NULL,
   password VARCHAR(20) NOT NULL,
-  admin INTEGER DEFAULT 0
+  admin INTEGER DEFAULT FALSE
 );
 
 -- ItemTypes defines the categories items are divided into. ID is automatically incremented

@@ -62,7 +62,7 @@ public class ProductController {
 		model.addAttribute("orderdetail", orderdetail);
 		return "cart";
 	}
-
+	
 	@PostMapping("/addToCart")
 	public String selected(HttpSession session, @ModelAttribute("Product") Product product, Model model) {
 		User user = (User) session.getAttribute("user");
@@ -72,7 +72,7 @@ public class ProductController {
 
 		ordersDao.addCartItem(orders.get(orders.size() - 1).getOrderID(), productId, user.getId());
 
-		return "cart";
+		return "redirect:cart";
 	}
 
 	// Control for productDetails: when an item is selected --> HAS GET PARAM
@@ -91,5 +91,16 @@ public class ProductController {
 
 		return "ItemDetails";
 	}
-
+	
+	//#Bao
+	@GetMapping("/newCart")
+	public String newCart(HttpSession session, Model model) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:login";
+		}
+		ordersDao.createNewOrder(user.getId());
+		return "newCart";	
+	}
+	
 }

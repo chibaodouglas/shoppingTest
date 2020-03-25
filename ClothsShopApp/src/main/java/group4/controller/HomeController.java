@@ -17,6 +17,7 @@ public class HomeController {
 	    User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
 		return "index";
+
 	}
 
 }

@@ -27,7 +27,7 @@
 										the card title and make up the bulk of the card's content.</p>
 									<div class="row">
 										<div class="col">
-											<p class="btn btn-danger btn-block">99.00 $</p>
+											<p class="btn btn-danger btn-block">${product.price}</p>
 										</div>
 										<div class="col">
 											<form:form action="addToCart" cssClass="form-horizontal"
